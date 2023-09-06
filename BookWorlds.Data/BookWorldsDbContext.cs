@@ -3,6 +3,8 @@ using BookWorlds.Data.Models;
 using BookWorlds.Data.Models.Enum;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,10 @@ namespace BookWorlds.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder modelBuilder)
         {
+            if (!modelBuilder.IsConfigured)
+            {
+              //TODO
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
