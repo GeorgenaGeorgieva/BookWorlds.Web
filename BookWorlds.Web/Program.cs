@@ -1,4 +1,5 @@
 using BookWorlds.Data;
+using BookWorlds.Data.Models;
 using BookWorlds.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -6,15 +7,14 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionStringIdentity = builder.Configuration.GetConnectionString("DefaultConnection");
+
 var connectionStringApp = builder.Configuration.GetConnectionString("ConnectionString");
 builder.Services.AddDbContext<BookWorldsDbContext>(options =>
     options.UseSqlServer(connectionStringApp));
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlServer(connectionStringIdentity));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<BookWorldsDbContext>();
 builder.Services.AddRazorPages();
 
